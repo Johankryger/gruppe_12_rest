@@ -11,5 +11,4 @@ public interface StrainRepo extends CrudRepository<Strain,Integer> {
     public Strain findById(int id);
 
     public Set<Strain> findByType(String name);
-
 }

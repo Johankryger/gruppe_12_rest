@@ -2,30 +2,26 @@ package gruppe_12_backend.rest_api_12.controller;
 
 import gruppe_12_backend.rest_api_12.service.StrainService;
 import gruppe_12_backend.rest_api_12.model.Strain;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
-
+@ResponseBody
 @RestController
+@RequestMapping("/strains")
 public class StrainController {
 
+    @Autowired
     private StrainService strainService;
 
-    StrainController(StrainService strainService){
-        this.strainService = strainService;
+    @GetMapping("/{id}")
+    public int getStrain(@PathVariable("id") int id){
+        return strainService.getStrain(id).getId();
     }
 
-
-    @GetMapping("/strain/{id}")
-    public Strain getStrain(@PathVariable("id") int id){
-        return strainService.getStrain(id);
+    @PostMapping("/")
+    public Strain createStrain(@RequestBody Strain strain) {
+        return strainService.createStrain(strain);
     }
 
-    @GetMapping("/strain/{name}")
-    public Set<Strain> getStrains(@PathVariable("name") String name){
-        return strainService.getStrains(name);
-    }
 
 }
