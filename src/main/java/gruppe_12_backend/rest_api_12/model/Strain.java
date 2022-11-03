@@ -1,22 +1,27 @@
 package gruppe_12_backend.rest_api_12.model;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public @Data class Strain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
+
+    @Column(unique = true)
     private String title;
+
     private String description;
     private String image;
     private int rating;
     private String medical;
-    private String type;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private StrainType type;
 }

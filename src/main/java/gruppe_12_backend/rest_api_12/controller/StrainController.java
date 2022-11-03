@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Api(tags = "Strain")
 @ResponseBody
 @RestController
@@ -15,9 +17,16 @@ import org.springframework.web.bind.annotation.*;
 public class StrainController {
 
     private StrainService strainService;
+    //private BriefStrainMapper briefStrainMapper;
 
     public StrainController(StrainService strainService) {
         this.strainService = strainService;
+        //this.briefStrainMapper = briefStrainMapper;
+    }
+
+    @GetMapping
+    public List<Strain> getAllStrains() {
+        return strainService.findAll();
     }
 
     @ApiOperation(value = "Get a strain by id", notes = "Returns a strain given the specific id")
@@ -27,9 +36,16 @@ public class StrainController {
     }
 
     @ApiOperation(value = "Save a new strain", notes = "Saves a new strain")
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Strain> createStrain(@RequestBody Strain strain) {
         return new ResponseEntity<>(strainService.createStrain(strain), HttpStatus.CREATED);
     }
+
+/*    @ApiOperation(value = "Get a brief strain collection", notes = "Returns all the strains in a brief version")
+    @GetMapping("")
+    public ResponseEntity<Set<BriefStrain>> getStrainsBrief() {
+        var allStrains = strainService.findAll();
+        return new ResponseEntity<>(strainService.)
+    }*/
 }
 

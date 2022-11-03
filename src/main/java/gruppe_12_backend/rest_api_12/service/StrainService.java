@@ -4,6 +4,10 @@ import gruppe_12_backend.rest_api_12.model.Strain;
 import gruppe_12_backend.rest_api_12.repository.StrainRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class StrainService {
 
@@ -19,5 +23,11 @@ public class StrainService {
 
     public Strain createStrain(Strain strain) {
         return strainRepo.save(strain);
+    }
+
+    public List<Strain> findAll() {
+        List<Strain> strains = new ArrayList<>();
+        strainRepo.findAll().iterator().forEachRemaining(strains::add);
+        return strains;
     }
 }
