@@ -2,6 +2,7 @@ package gruppe_12_backend.rest_api_12.model;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 
@@ -15,10 +16,12 @@ public @Data class Strain {
     @Column(unique = true)
     private String title;
 
+    @Length(max = 1024)
     private String description;
-    private String image;
+    private String src;
     private int rating;
     private String medical;
+    private int energy;
 
     @NotNull
     @ManyToOne
