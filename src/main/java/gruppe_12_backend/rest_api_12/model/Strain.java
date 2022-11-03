@@ -2,11 +2,13 @@ package gruppe_12_backend.rest_api_12.model;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 public @Data class Strain {
 
     @Id

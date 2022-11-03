@@ -1,3 +1,24 @@
+-- Table: strain_type
+
+-- DROP TABLE IF EXISTS strain_type;
+
+CREATE TABLE IF NOT EXISTS strain_type
+(
+    id integer NOT NULL,
+    description character varying(255) COLLATE pg_catalog."default",
+    effects character varying(255) COLLATE pg_catalog."default",
+    origin character varying(255) COLLATE pg_catalog."default",
+    ratio character varying(255) COLLATE pg_catalog."default",
+    src character varying(255) COLLATE pg_catalog."default",
+    title character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT strain_type_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS strain_type
+    OWNER to postgres;
+
 INSERT INTO strain_type(id, title, src, origin, description, ratio, effects) VALUES
 (1, 'Indica', './indica1.webp', 'Origin: Cannabis indica is native to Afghanistan, India, Pakistan, and Turkey. The plants have adapted to the often harsh, dry, and turbulent climate of the Hindu Kush mountains.', 'Plant description: Indica plants are short and stocky with bushy greenery and chunky leaves that grow wide and broad. They grow faster than sativa, and each plant produces more buds.', 'Typical CBD to THC ratio: Indica strains often have higher levels of CBD, but the THC content isn’t necessarily less.', 'Commonly associated effects of use: Indica is sought after for its intensely relaxing effects. It may also help reduce nausea and pain and increase appetite.'),
 (2, 'Sativa', './sativa.png', 'Cannabis sativa is found primarily in hot, dry climates with long sunny days. These include Africa, Central America, Southeast Asia, and portions of Western Asia', 'Sativa plants are tall and thin with finger-like leaves. They can grow taller than 12 feet, and they take longer to mature than some other types of cannabis.', 'Sativa often has lower doses of CBD and higher doses of THC.', 'Sativa often produces a “mind high,” or an energizing, anxiety-reducing effect. If you use sativa-dominant strains, you may feel productive and creative, not relaxed and lethargic.'),

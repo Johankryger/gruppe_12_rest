@@ -1,3 +1,30 @@
+-- Table: strain
+
+-- DROP TABLE IF EXISTS strain;
+
+CREATE TABLE IF NOT EXISTS strain
+(
+    id bigint NOT NULL,
+    description character varying(1024) COLLATE pg_catalog."default",
+    energy integer NOT NULL,
+    medical character varying(255) COLLATE pg_catalog."default",
+    rating integer NOT NULL,
+    src character varying(255) COLLATE pg_catalog."default",
+    title character varying(255) COLLATE pg_catalog."default",
+    type_id bigint,
+    CONSTRAINT strain_pkey PRIMARY KEY (id),
+    CONSTRAINT uk_2nhij4numqo5hq4v77dfc6485 UNIQUE (title),
+    CONSTRAINT fkrub8vbv78rfqu0pceyaqatvel FOREIGN KEY (type_id)
+        REFERENCES public.strain_type (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.strain
+    OWNER to postgres;
+
 INSERT INTO strain(id, title, description, src, rating, medical, energy, type_id) VALUES
 (1, 'Nothern Lights', 'Northern Lights, also known as "NL," is an indica marijuana strain made by crossing Afghani with Thai. Northern Lights produces euphoric effects that settle in firmly throughout the body, relaxing muscles and easing the mind. Consumers say this strain has a pungently sweet and spicy flavor profile that is smooth on the exhale. Medical marijuana patients choose Northern Lights to help relieve symptoms associated with depression, stress, pain and insomnia. Growers say this strain features purple and crystal-coated buds and grows best indoors with a flowering time of 45-50 days.', './nothern_lights.png', 4, 'Medical', 20, 1),
 (2, 'Strawberry Cough', 'Known for its sweet smell of fresh strawberries and an expanding sensation that can make even the most seasoned consumer cough, Strawberry Cough is a potent sativa marijuana strain with mysterious genetic origins. However, Strawberry Cough is thought to be a cross of Haze and Strawberry Fields.', 'strawberry_cough.png', 5, 'Medical', 70, 2),
