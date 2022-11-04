@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StrainRepo extends CrudRepository<Strain,Integer> {
-    Strain findById(int id);
+    Strain findById(long id);
 }
