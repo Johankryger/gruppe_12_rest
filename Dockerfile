@@ -7,4 +7,5 @@ RUN mvn package
 FROM openjdk:15-jdk-alpine
 ARG JAR_FILE=/tmp/target/*.jar
 COPY --from=MAVEN ${JAR_FILE} app.jar
+EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app.jar"]
