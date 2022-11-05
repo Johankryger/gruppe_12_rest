@@ -17,7 +17,7 @@ public class StrainService {
         this.strainRepo = strainRepo;
     }
 
-    public Strain getStrain(int id){
+    public Strain getStrain(long id){
         return strainRepo.findById(id);
     }
 
