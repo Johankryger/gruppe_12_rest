@@ -30,7 +30,7 @@ public class StrainController {
     }
 
     @ApiOperation(value = "Get a strain by id", notes = "Returns a strain given the specific id")
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Strain> getStrain(@PathVariable("id") long id){
         return ResponseEntity.ok(strainService.getStrain(id));
     }
