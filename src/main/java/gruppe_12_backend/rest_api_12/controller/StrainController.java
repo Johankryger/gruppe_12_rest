@@ -17,11 +17,9 @@ import java.util.List;
 public class StrainController {
 
     private StrainService strainService;
-    //private BriefStrainMapper briefStrainMapper;
 
     public StrainController(StrainService strainService) {
         this.strainService = strainService;
-        //this.briefStrainMapper = briefStrainMapper;
     }
 
     @GetMapping
@@ -40,12 +38,5 @@ public class StrainController {
     public ResponseEntity<Strain> createStrain(@RequestBody Strain strain) {
         return new ResponseEntity<>(strainService.createStrain(strain), HttpStatus.CREATED);
     }
-
-/*    @ApiOperation(value = "Get a brief strain collection", notes = "Returns all the strains in a brief version")
-    @GetMapping("")
-    public ResponseEntity<Set<BriefStrain>> getStrainsBrief() {
-        var allStrains = strainService.findAll();
-        return new ResponseEntity<>(strainService.)
-    }*/
 }
 
