@@ -21,7 +21,49 @@ public @Data class Distributor {
     @Length(max = 1024)
     private String description;
 
-    @Column(columnDefinition = "point")
-    private Point coordinate;
+    @Column(columnDefinition = "float(10)")
+    private float lat;
 
+    @Column(columnDefinition = "float(10)")
+    private float lng;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
 }
