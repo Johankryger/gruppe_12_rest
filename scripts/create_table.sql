@@ -27,3 +27,11 @@ CREATE TABLE IF NOT EXISTS strain_type
     title character varying(255) COLLATE pg_catalog."default",
     CONSTRAINT strain_type_pkey PRIMARY KEY (id)
     );
+
+CREATE TABLE IF NOT EXISTS distributor
+(
+    id integer NOT NULL,
+    title varchar(255),
+    description varchar(1024),
+    coordinate point
+);
