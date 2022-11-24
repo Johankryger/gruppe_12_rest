@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/strains")
 public class StrainController {
 
-    private StrainService strainService;
+    private final StrainService strainService;
 
     public StrainController(StrainService strainService) {
         this.strainService = strainService;
@@ -36,7 +36,13 @@ public class StrainController {
     @ApiOperation(value = "Save a new strain", notes = "Saves a new strain")
     @PostMapping
     public ResponseEntity<Strain> createStrain(@RequestBody Strain strain) {
-        return new ResponseEntity<>(strainService.createStrain(strain), HttpStatus.CREATED);
+        return new ResponseEntity<>(strainService.saveStrain(strain), HttpStatus.CREATED);
+    }
+
+    @ApiOperation(value = "Update an existing strain", notes = "Update the information for an existing strain")
+    @PutMapping("/{id}")
+    public Strain updateStrain(@PathVariable Long id, @ModelAttribute("strain") Strain strain) {
+        return strainService.updateStrain(id, strain);
     }
 }
 

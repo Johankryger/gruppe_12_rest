@@ -1,13 +1,12 @@
 package gruppe_12_backend.rest_api_12.service;
 
 import gruppe_12_backend.rest_api_12.model.StrainType;
-import gruppe_12_backend.rest_api_12.repository.StrainTypeRepo;
+import gruppe_12_backend.rest_api_12.repository.StrainTypeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -24,12 +23,12 @@ public class StrainTypeServiceTest {
     private StrainTypeService strainTypeService;
 
     @Mock
-    private StrainTypeRepo strainTypeRepoMock;
+    private StrainTypeRepository strainTypeRepositoryMock;
 
     @Test
     public void findAll() {
         List<StrainType> mockStrainTypes = Collections.singletonList(new StrainType());
-        Mockito.when(strainTypeRepoMock.findAll()).thenReturn(mockStrainTypes);
+        Mockito.when(strainTypeRepositoryMock.findAll()).thenReturn(mockStrainTypes);
 
         List<StrainType> strainTypes = strainTypeService.findAll();
 

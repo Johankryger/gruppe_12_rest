@@ -1,7 +1,7 @@
 package gruppe_12_backend.rest_api_12.service;
 
 import gruppe_12_backend.rest_api_12.model.Strain;
-import gruppe_12_backend.rest_api_12.repository.StrainRepo;
+import gruppe_12_backend.rest_api_12.repository.StrainRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,14 +23,14 @@ public class StrainServiceTest {
     private StrainService strainService;
 
     @Mock
-    private StrainRepo strainRepoMock;
+    private StrainRepository strainRepositoryMock;
 
     @Test
     public void getStrain() {
         long testId = 123;
         Strain mockStrain = new Strain();
         mockStrain.setId(testId);
-        Mockito.when(strainRepoMock.findById(testId)).thenReturn(mockStrain);
+        Mockito.when(strainRepositoryMock.findById(testId)).thenReturn(mockStrain);
 
         Strain result = strainService.getStrain(testId);
 
@@ -41,7 +41,7 @@ public class StrainServiceTest {
     @Test
     public void findAll() {
         List<Strain> mockStrains = Collections.singletonList(new Strain());
-        Mockito.when(strainRepoMock.findAll()).thenReturn(mockStrains);
+        Mockito.when(strainRepositoryMock.findAll()).thenReturn(mockStrains);
 
         List<Strain> strains = strainService.findAll();
 
