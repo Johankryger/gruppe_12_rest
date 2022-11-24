@@ -13,6 +13,7 @@ public class SwaggerUiConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .host("grp12.servecounterstrike.com")
                 .select()
                 .paths(PathSelectors.any())
                 .apis(RequestHandlerSelectors.any())
