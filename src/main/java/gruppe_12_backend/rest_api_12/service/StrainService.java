@@ -1,33 +1,38 @@
 package gruppe_12_backend.rest_api_12.service;
 
+import gruppe_12_backend.rest_api_12.model.Distributor;
 import gruppe_12_backend.rest_api_12.model.Strain;
-import gruppe_12_backend.rest_api_12.repository.StrainRepo;
+import gruppe_12_backend.rest_api_12.repository.StrainRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class StrainService {
 
-    private StrainRepo strainRepo;
+    private final StrainRepository strainRepository;
 
-    public StrainService(StrainRepo strainRepo) {
-        this.strainRepo = strainRepo;
+    public StrainService(StrainRepository strainRepository) {
+        this.strainRepository = strainRepository;
     }
 
     public Strain getStrain(long id){
-        return strainRepo.findById(id);
+        return strainRepository.findById(id);
     }
 
-    public Strain createStrain(Strain strain) {
-        return strainRepo.save(strain);
+    public Strain saveStrain(Strain strain) {
+        return strainRepository.save(strain);
     }
 
     public List<Strain> findAll() {
         List<Strain> strains = new ArrayList<>();
-        strainRepo.findAll().iterator().forEachRemaining(strains::add);
+        strainRepository.findAll().iterator().forEachRemaining(strains::add);
         return strains;
+    }
+
+    public Strain updateStrain(Long id, Strain strain) {
+        strain.setId(id);
+        return strainRepository.save(strain);
     }
 }

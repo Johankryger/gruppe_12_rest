@@ -13,10 +13,10 @@ import java.util.List;
 @Transactional
 public class DistributorService {
 
-    @Autowired
-    private DistributorRepository distributorRepository;
+    private final DistributorRepository distributorRepository;
 
-    public DistributorService(){
+    public DistributorService(DistributorRepository distributorRepository) {
+        this.distributorRepository = distributorRepository;
     }
 
     public Distributor getDistributor(long id) {
@@ -25,5 +25,14 @@ public class DistributorService {
 
     public Iterable<Distributor> getAllDistributors() {
         return distributorRepository.findAll();
+    }
+
+    public Distributor saveDistributor(Distributor distributor) {
+        return distributorRepository.save(distributor);
+    }
+
+    public Distributor updateDistributor(Long id, Distributor distributor) {
+        distributor.setId(id);
+        return distributorRepository.save(distributor);
     }
 }

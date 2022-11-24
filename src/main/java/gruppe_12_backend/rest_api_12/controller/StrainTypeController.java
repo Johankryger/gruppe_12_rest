@@ -1,6 +1,5 @@
 package gruppe_12_backend.rest_api_12.controller;
 
-import gruppe_12_backend.rest_api_12.model.Strain;
 import gruppe_12_backend.rest_api_12.model.StrainType;
 import gruppe_12_backend.rest_api_12.service.StrainTypeService;
 import io.swagger.annotations.Api;
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/strains/type")
 public class StrainTypeController {
-    private StrainTypeService strainTypeService;
+    private final StrainTypeService strainTypeService;
 
     public StrainTypeController(StrainTypeService strainTypeService) {
         this.strainTypeService = strainTypeService;
@@ -26,4 +25,6 @@ public class StrainTypeController {
     public List<StrainType> getAllStrainTypes() {
         return strainTypeService.findAll();
     }
+
+
 }
