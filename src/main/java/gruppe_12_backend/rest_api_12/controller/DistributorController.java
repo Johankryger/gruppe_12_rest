@@ -40,4 +40,10 @@ public class DistributorController {
         return new ResponseEntity<>(distributorService.createDistributor(distributor), HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Delete a distributor", notes = "Deletes a new distributor")
+    @DeleteMapping
+    public void deleteDistributor(@RequestBody Distributor distributor) {
+        distributorService.deleteDistributor(distributor);
+    }
+
 }

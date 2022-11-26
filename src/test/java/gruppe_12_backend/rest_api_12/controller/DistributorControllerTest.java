@@ -59,7 +59,8 @@ class DistributorControllerTest extends AbstractTest {
     }
 
     @Test
-    public void createDistributor() throws Exception {
+    public void createAndDeleteDistributor() throws Exception {
+        // CREATE
         Distributor testDistributor = new Distributor();
         testDistributor.setTitle("Test distributor");
 
@@ -81,7 +82,13 @@ class DistributorControllerTest extends AbstractTest {
         assertNotNull(distributor.getId());
         assertNotNull(distributor.getTitle());
 
-        // Cleanup
-        ds.deleteDistributor(distributor);
+        // DELETE
+        mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)
+                .content(asJsonString(distributor))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andReturn();
+
+        // Assert distributor can not be found in the database
+        assertNull(ds.getDistributor(distributor.getId()));
     }
 }
