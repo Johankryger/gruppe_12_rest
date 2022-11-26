@@ -20,7 +20,6 @@ public class DistributorController {
     @Autowired
     private DistributorService distributorService;
 
-//    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get a distributor by id", notes = "Returns a distributor given the specific id")
     @GetMapping("/{id}")
     public Distributor getDistributor(@PathVariable("id") Long id){
@@ -43,12 +42,6 @@ public class DistributorController {
     @DeleteMapping
     public void deleteDistributor(@RequestBody Distributor distributor) {
         distributorService.deleteDistributor(distributor);
-    }
-
-    @ApiOperation(value = "Save a new distributor", notes = "Save a new distributor in the system")
-    @PostMapping
-    public Distributor saveDistributor(@ModelAttribute("distributor") Distributor distributor) {
-        return distributorService.saveDistributor(distributor);
     }
 
     @ApiOperation(value = "Update an existing distributor", notes = "Update the information for an existing distributor")

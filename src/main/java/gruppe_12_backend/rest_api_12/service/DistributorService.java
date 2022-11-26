@@ -3,7 +3,6 @@ package gruppe_12_backend.rest_api_12.service;
 import gruppe_12_backend.rest_api_12.model.Distributor;
 import gruppe_12_backend.rest_api_12.repository.DistributorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -42,10 +41,6 @@ public class DistributorService {
         if (existingDistributor.isPresent()) {
             distributorRepository.delete(distributor);
         }
-    }
-
-    public Distributor saveDistributor(Distributor distributor) {
-        return distributorRepository.save(distributor);
     }
 
     public Distributor updateDistributor(Long id, Distributor distributor) {
