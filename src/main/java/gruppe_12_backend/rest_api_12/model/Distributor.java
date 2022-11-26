@@ -12,7 +12,6 @@ import javax.persistence.*;
 public @Data class Distributor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(unique = true)
