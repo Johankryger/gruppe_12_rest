@@ -27,13 +27,13 @@ public class DistributorService {
         return distributors;
     }
 
-    public long createDistributor(Distributor distributor) {
+    public Distributor createDistributor(Distributor distributor) {
         List<Distributor> all = getAllDistributors();
         distributor.setId(all.get(all.size() - 1).getId() + 1L);
 
         distributorRepository.save(distributor);
 
-        return distributor.getId();
+        return distributor;
     }
 
     public void deleteDistributor (Distributor distributor) {

@@ -1,10 +1,13 @@
 package gruppe_12_backend.rest_api_12.controller;
 
 import gruppe_12_backend.rest_api_12.model.Distributor;
+import gruppe_12_backend.rest_api_12.model.Strain;
 import gruppe_12_backend.rest_api_12.service.DistributorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +32,12 @@ public class DistributorController {
     @GetMapping
     public List<Distributor> getAllDistributors(){
         return distributorService.getAllDistributors();
+    }
+
+    @ApiOperation(value = "Save a new distributor", notes = "Saves a new distributor")
+    @PostMapping
+    public ResponseEntity<Distributor> createDistributor(@RequestBody Distributor distributor) {
+        return new ResponseEntity<>(distributorService.createDistributor(distributor), HttpStatus.CREATED);
     }
 
 }

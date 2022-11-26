@@ -63,8 +63,8 @@ class DistributorServiceTest {
         Distributor newDistributor = new Distributor();
         newDistributor.setTitle("Test distributor");
         newDistributor.setDescription("This is a test distributor");
-        // Save the distributor to the database
-        ds.createDistributor(newDistributor);
+        // Save the distributor to the database and get the returned object
+        newDistributor = ds.createDistributor(newDistributor);
 
         // Assertions
         assertNotNull(newDistributor);
@@ -81,8 +81,8 @@ class DistributorServiceTest {
         // Sample data
         Distributor newDistributor = new Distributor();
         newDistributor.setTitle("New Distributor");
-        // Save to database
-        ds.createDistributor(newDistributor);
+        // Save to database and get the returned object
+        newDistributor = ds.createDistributor(newDistributor);
 
         // Assert you can get distributor
         assertNotNull(ds.getDistributor(newDistributor.getId()));
