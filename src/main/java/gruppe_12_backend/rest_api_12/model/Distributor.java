@@ -20,11 +20,8 @@ public @Data class Distributor {
     @Length(max = 1024)
     private String description;
 
-    @Column(columnDefinition = "float(10)")
-    private float lat;
-
-    @Column(columnDefinition = "float(10)")
-    private float lng;
+    @Column(name = "address")
+    private String address;
 
     public Long getId() {
         return id;
@@ -50,19 +47,11 @@ public @Data class Distributor {
         this.description = description;
     }
 
-    public float getLat() {
-        return lat;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLat(float lat) {
-        this.lat = lat;
-    }
-
-    public float getLng() {
-        return lng;
-    }
-
-    public void setLng(float lng) {
-        this.lng = lng;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
