@@ -1,9 +1,12 @@
-package com.example.rest_demo.user;
+package gruppe_12_backend.rest_api_12.service;
 
+import gruppe_12_backend.rest_api_12.model.User;
+import gruppe_12_backend.rest_api_12.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,13 +16,14 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public List<User> getUsers() {
-        return userRepository.findAll();
+        List<User> users = new ArrayList<>();
+        userRepository.findAll().iterator().forEachRemaining(users::add);
+        return users;
     }
 
 

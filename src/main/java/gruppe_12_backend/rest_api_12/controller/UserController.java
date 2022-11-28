@@ -1,5 +1,8 @@
-package com.example.rest_demo.user;
+package gruppe_12_backend.rest_api_12.controller;
 
+import gruppe_12_backend.rest_api_12.model.User;
+import gruppe_12_backend.rest_api_12.service.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,13 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(tags = "User")
+@ResponseBody
 @RestController
-@RequestMapping(path = "api/user")
+@RequestMapping(path = "/users")
 public class UserController {
 
     private final UserService userService;
 
-    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -23,7 +27,7 @@ public class UserController {
         return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/add")
+    @PostMapping
     public ResponseEntity<?> registerNewUser(@RequestBody User user) {
         userService.addNewUser(user);
 

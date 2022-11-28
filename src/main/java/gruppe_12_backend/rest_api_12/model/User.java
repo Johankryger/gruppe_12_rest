@@ -1,4 +1,4 @@
-package com.example.rest_demo.user;
+package gruppe_12_backend.rest_api_12.model;
 
 import javax.persistence.*;
 
