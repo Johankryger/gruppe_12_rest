@@ -1,0 +1,23 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: backend
+      run: sudo docker image prune -f
+    - name: compose build
+      run: sudo docker-compose build backend
+    - name: compose up
+      run: sudo docker-compose up -d backend
