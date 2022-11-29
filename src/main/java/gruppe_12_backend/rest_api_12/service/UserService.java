@@ -3,26 +3,22 @@ package gruppe_12_backend.rest_api_12.service;
 import gruppe_12_backend.rest_api_12.model.User;
 import gruppe_12_backend.rest_api_12.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 // Our service class, that is responsible for all business logic.
 @Service
 public class UserService {
-    private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    private UserRepository userRepository;
+
+    public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers() {
-        List<User> users = new ArrayList<>();
-        userRepository.findAll().iterator().forEachRemaining(users::add);
-        return users;
+    public User getUsers(String username) {
+        
+        return userRepository.findUserByUsername(username);
     }
 
     public User getUser(Long id) {
@@ -30,12 +26,15 @@ public class UserService {
     }
 
 
-    public void addNewUser(User user) {
-        Optional<User> optionalUser = userRepository.findUserByEmail(user.getEmail());
-        if (optionalUser.isPresent()) {
+    public User addNewUser(User user) {
+
+        /* 
+        User userFromStorage = userRepository.findUserByEmail(user.getEmail());
+        if (userFromStorage.getEmail().equals(user.getEmail())) {
             throw new IllegalStateException("email taken");
         }
-        userRepository.save(user);
+        */
+       return userRepository.save(user);
     }
 
     public void deleteUser(Long userID) {
@@ -60,8 +59,8 @@ public class UserService {
         }
         if (email != null && email.length() > 0 && !Objects.equals(user.getEmail(), email)) {
 
-            Optional<User> userOptional = userRepository.findUserByEmail(email);
-            if (userOptional.isPresent()) {
+            User userFromStorage = userRepository.findUserByEmail(email);
+            if (userFromStorage.getEmail().equals(user.getEmail())) {
                 throw new IllegalStateException("email taken");
             }
             user.setEmail(email);

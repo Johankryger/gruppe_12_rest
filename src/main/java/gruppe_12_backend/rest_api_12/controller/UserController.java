@@ -3,7 +3,7 @@ package gruppe_12_backend.rest_api_12.controller;
 import gruppe_12_backend.rest_api_12.model.User;
 import gruppe_12_backend.rest_api_12.service.UserService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,22 +16,23 @@ import java.util.List;
 @RequestMapping(path = "/users")
 public class UserController {
 
-    private final UserService userService;
+    
+    private UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping
-    public ResponseEntity<?> getUser() {
-        return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
+    @ApiOperation(value = "Get user", notes = "Gets a user")
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable("username") String username) {
+        return new ResponseEntity<User>(userService.getUsers(username), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> registerNewUser(@RequestBody User user) {
-        userService.addNewUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<User>(userService.addNewUser(user) ,HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/delete/{userId}")

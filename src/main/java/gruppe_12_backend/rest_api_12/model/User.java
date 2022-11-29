@@ -1,17 +1,18 @@
 package gruppe_12_backend.rest_api_12.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "user_table")//is for hibernate.
+@Table(name = "user_table") //is for hibernate.
 public class User {
+    
+    
     @Id
     @SequenceGenerator(
             name = "user_sequence",

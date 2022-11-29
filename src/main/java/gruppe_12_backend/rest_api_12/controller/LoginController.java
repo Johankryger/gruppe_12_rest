@@ -1,5 +1,5 @@
 package gruppe_12_backend.rest_api_12.controller;
-
+/* 
 import gruppe_12_backend.rest_api_12.model.User;
 import io.swagger.annotations.Api;
 import kong.unirest.Unirest;
@@ -40,3 +40,4 @@ public class LoginController {
 //        throw new NotImplementedException();
 //    }
 }
+*/
