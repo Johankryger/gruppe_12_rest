@@ -21,35 +21,42 @@ public @Data class User {
     @Getter
     @Setter
     @Length(min = 1, max = 128)
+    @Column(name = "userName")
     private String userName;
     
     @Getter
     @Setter
     @Length(min = 1, max = 128)
+    @Column(name = "firstName")
     private String firstName;
     
     @Getter
     @Setter
     @Length(min = 1, max = 128)
+    @Column(name = "lastName")
     private String lastName;
     
     @Getter
     @Setter
     @Length(min = 1, max = 128)
+    @Column(name = "eMail")
     private String eMail;
     
     @Getter
     @Setter
+    @Column(name = "gender")
     private String gender;
     
     @Getter
     @Setter
     @Length(min = 8, max = 128)
+    @Column(name = "password")
     private String password;
     
     @Getter
     @Setter
     @NotNull
+    @Column(name = "birthday")
     private Date birthday;
     
 }

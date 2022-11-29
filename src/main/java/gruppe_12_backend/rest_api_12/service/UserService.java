@@ -26,11 +26,13 @@ public class UserService {
 
     public User updateUser(User user) {
 
-        User newUser = new User();
-        newUser.setGender(user.getGender());
-        newUser.setEMail(user.getEMail());
-        newUser.setPassword(user.getPassword());
-        return userRepository.save(newUser);
+        
+        User currentUser = userRepository.findByUserName(user.getUserName());
+        currentUser.setGender(user.getGender());
+        currentUser.setEMail(user.getEMail());
+        currentUser.setPassword(user.getPassword());
+        return userRepository.save(currentUser);
+    
 
     }
 

@@ -30,6 +30,9 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
 
+        System.out.println(user.getFirstName());
+        System.out.println("!!!!!!!!!!");
+
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
 
