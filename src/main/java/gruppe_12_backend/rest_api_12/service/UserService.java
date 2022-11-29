@@ -8,7 +8,7 @@ import java.util.Objects;
 
 // Our service class, that is responsible for all business logic.
 @Service
-public class UserService  implements IUserService{
+public class UserService {
 
     private UserRepository userRepository;
 

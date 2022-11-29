@@ -1,16 +1,13 @@
 package gruppe_12_backend.rest_api_12.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import gruppe_12_backend.rest_api_12.model.User;
-import gruppe_12_backend.rest_api_12.repository.UserRepository;
 import gruppe_12_backend.rest_api_12.service.UserService;
 import gruppe_12_backend.rest_api_12.stubs.UserRepositoryStub;
+import kong.unirest.HttpStatus;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import static org.junit.Assert.*;
-import org.junit.Assert;
 
 public class UserControllerTest {
 
@@ -72,6 +69,30 @@ public class UserControllerTest {
         assertEquals(testUser.getEmail(), responseUser.getEmail());
 
     }
+
+
+    @Test
+    public void Delete_User_Deletes_Specified_User_In_Storage() {
+
+           //Arrange
+           userService = new UserService(new UserRepositoryStub());
+           userController = new UserController(userService);
+           User testUser = new User();
+           testUser.setUsername("Bente1963");
+           testUser.setFirst_name("Bente");
+           testUser.setLast_name("Hansen");
+           testUser.setGender("Transgender woman");
+           testUser.setEmail("Hansen@test.dk");
+           userService.addNewUser(testUser);
+           
+
+
+
+
+
+
+    }
+    
 
 
     
