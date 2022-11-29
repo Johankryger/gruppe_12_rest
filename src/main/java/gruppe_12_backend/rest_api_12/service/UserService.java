@@ -2,7 +2,6 @@ package gruppe_12_backend.rest_api_12.service;
 
 import gruppe_12_backend.rest_api_12.model.User;
 import gruppe_12_backend.rest_api_12.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,6 +25,10 @@ public class UserService {
         return users;
     }
 
+    public User getUser(Long id) {
+        return userRepository.findUserById(id);
+    }
+
 
     public void addNewUser(User user) {
         Optional<User> optionalUser = userRepository.findUserByEmail(user.getEmail());
@@ -44,16 +47,16 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(Long userId,  String firstName, String sureName, String email, String password) {
+    public void updateUser(Long userId,  String first_name, String last_name, String email, String password, String gender) {
         User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException(
                 "user with id " + userId + " does not exists"
         ));
 
-        if (firstName != null && firstName.length() > 0 && !Objects.equals(user.getFirstName(), firstName)) {
-            user.setFirstName(firstName);
+        if (first_name != null && first_name.length() > 0 && !Objects.equals(user.getFirst_name(), first_name)) {
+            user.setFirst_name(first_name);
         }
-        if (sureName != null && sureName.length() > 0 && !Objects.equals(user.getSureName(), sureName)) {
-            user.setSureName(sureName);
+        if (last_name != null && last_name.length() > 0 && !Objects.equals(user.getLast_name(), last_name)) {
+            user.setLast_name(last_name);
         }
         if (email != null && email.length() > 0 && !Objects.equals(user.getEmail(), email)) {
 
@@ -66,6 +69,12 @@ public class UserService {
         if (password != null && password.length() > 0 && !Objects.equals(user.getPassword(), password)) {
             user.setPassword(password);
         }
+
+        if (gender != null && gender.length() > 0 && !Objects.equals(user.getGender(), gender)) {
+            user.setGender(gender);
+        }
+
+        userRepository.save(user);
     }
 /*
     @Transactional

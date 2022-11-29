@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @Api(tags = "Login")
 @Controller
@@ -35,8 +35,8 @@ public class LoginController {
         return body;
     }
 
-    @GetMapping("/validate")
-    public User validateToken(@RequestHeader("Authorization") String authHeader) {
-        throw new NotImplementedException();
-    }
+//    @GetMapping("/validate")
+//    public User validateToken(@RequestHeader("Authorization") String authHeader) {
+//        throw new NotImplementedException();
+//    }
 }

@@ -31,7 +31,7 @@ public class UserController {
     public ResponseEntity<?> registerNewUser(@RequestBody User user) {
         userService.addNewUser(user);
 
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/delete/{userId}")
@@ -47,7 +47,8 @@ public class UserController {
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String sureName,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) String password) {
-        userService.updateUser(userId, firstName, sureName, email, password);
+            @RequestParam(required = false) String password,
+            @RequestParam(required = false) String gender) {
+        userService.updateUser(userId, firstName, sureName, email, password, gender);
     }
 }
