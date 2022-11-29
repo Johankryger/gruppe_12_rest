@@ -8,26 +8,26 @@ import gruppe_12_backend.rest_api_12.repository.UserRepository;
 public class UserRepositoryStub implements UserRepository {
     
 
-    private ArrayList<User> fakeDB = new ArrayList<>();
+    private ArrayList<User> fakeStorage = new ArrayList<>();
 
 
     @Override
     public <S extends User> S save(S entity) {
 
-        fakeDB.add(entity);
+        fakeStorage.add(entity);
         return entity;
     }
     
     @Override
     public void delete(User entity) {
 
-        fakeDB.remove(entity);
+        fakeStorage.remove(entity);
     }
     
     @Override
     public User findUserByEmail(String email) {
 
-        for (User user : fakeDB) {
+        for (User user : fakeStorage) {
 
             if (user.getEmail().equals(email)) {
                 return user;
@@ -40,7 +40,7 @@ public class UserRepositoryStub implements UserRepository {
     @Override
     public User findUserByUsername(String username) {
 
-        for (User user : fakeDB) {
+        for (User user : fakeStorage) {
 
             if (user.getUsername().equals(username)) {
                 return user;
@@ -53,7 +53,7 @@ public class UserRepositoryStub implements UserRepository {
     @Override
     public User findUserById(Long id) {
 
-        for (User user : fakeDB) {
+        for (User user : fakeStorage) {
 
             if (user.getId().equals(id)) {
                 return user;

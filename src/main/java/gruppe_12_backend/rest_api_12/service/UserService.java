@@ -8,7 +8,7 @@ import java.util.Objects;
 
 // Our service class, that is responsible for all business logic.
 @Service
-public class UserService {
+public class UserService  implements IUserService{
 
     private UserRepository userRepository;
 
@@ -37,7 +37,9 @@ public class UserService {
        return userRepository.save(user);
     }
 
-    public void deleteUser(Long userID) {
+    public void deleteUser(User user) {
+
+        long userID = user.getId();
         boolean exists = userRepository.existsById(userID);
         if (!exists) {
             throw new IllegalStateException("user with id " + userID + " does not exists");
