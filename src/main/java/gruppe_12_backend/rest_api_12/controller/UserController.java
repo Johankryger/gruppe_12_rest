@@ -40,14 +40,9 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update/{userId}")
-    public void updateUser(
-            @PathVariable("userId") Long userId,
-            @RequestParam(required = false) String firstName,
-            @RequestParam(required = false) String sureName,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String password,
-            @RequestParam(required = false) String gender) {
-        userService.updateUser(userId, firstName, sureName, email, password, gender);
+    @PutMapping()
+    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

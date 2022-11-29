@@ -48,7 +48,21 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(Long userId,  String first_name, String last_name, String email, String password, String gender) {
+    public void updateUser(User user) {
+
+
+
+        User storedUser = userRepository.findUserById(user.getId());
+
+        storedUser.setFirst_name(user.getFirst_name());
+        storedUser.setLast_name(user.getLast_name());
+        storedUser.setEmail(user.getEmail());
+        storedUser.setGender(user.getGender());
+        storedUser.setPassword(user.getPassword());
+        userRepository.save(storedUser);
+
+        /*        
+       
         User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException(
                 "user with id " + userId + " does not exists"
         ));
@@ -74,8 +88,9 @@ public class UserService {
         if (gender != null && gender.length() > 0 && !Objects.equals(user.getGender(), gender)) {
             user.setGender(gender);
         }
+        */
 
-        userRepository.save(user);
+      
     }
 /*
     @Transactional

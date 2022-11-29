@@ -61,6 +61,38 @@ public class UserRepositoryStub implements UserRepository {
 
         }
         return null;
+
+    }
+    
+    @Override
+    public void deleteById(Long id) {
+
+        User userToDelete = null;
+
+        for (User user : fakeStorage) {
+
+            if (user.getId().equals(id)) {
+                userToDelete = user;
+            }
+        }
+
+        if (userToDelete != null) {
+            fakeStorage.remove(userToDelete);
+        }
+
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+
+        for (User user : fakeStorage) {
+
+            if (user.getId().equals(id)) {
+                return true;
+            }
+
+        }
+        return false;
         
     }
 
@@ -72,8 +104,6 @@ public class UserRepositoryStub implements UserRepository {
     @Override
     public <S extends User> Iterable<S> saveAll(Iterable<S> entities) {return null;}
 
-    @Override
-    public boolean existsById(Long id) {return false;}
 
     @Override
     public Iterable<User> findAll() {return null;}
@@ -83,9 +113,6 @@ public class UserRepositoryStub implements UserRepository {
 
     @Override
     public long count() {return 0;}
-
-    @Override
-    public void deleteById(Long id) {}
 
 
     @Override
