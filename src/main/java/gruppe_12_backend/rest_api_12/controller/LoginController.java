@@ -1,9 +1,8 @@
 package gruppe_12_backend.rest_api_12.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import gruppe_12_backend.rest_api_12.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import gruppe_12_backend.rest_api_12.TokenUtils;
 import gruppe_12_backend.rest_api_12.exceptions.NotAuthorizedException;
@@ -14,17 +13,18 @@ import io.swagger.annotations.Api;
 @Api(tags = "Login")
 @ResponseBody
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "/login")
 public class LoginController {
-
+    @Autowired
+    UserService userService;
     @PostMapping
-    public String sendLoginData(LoginData data) throws NotAuthorizedException {
+    public String sendLoginData(@RequestBody LoginData data) throws NotAuthorizedException {
 
-        if(data != null && "someUserName".equals(data.getUserName()) 
-                && "SomePassword".equals(data.getPassword())) {
-
-            //TODO her skal vi lave en bruger med det nye username
-            return TokenUtils.generateToken(new User());
+        if(data != null ) {
+            User user = userService.getUsers(data.getUsername());
+            if (user != null && user.getPassword().equals(data.getPassword())) {
+                return TokenUtils.generateToken(userService.getUsers(data.getUsername()));
+            }
         }
         throw new NotAuthorizedException("Wrong credentials");
     }
