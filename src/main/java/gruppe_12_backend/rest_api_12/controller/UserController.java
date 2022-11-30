@@ -3,12 +3,11 @@ package gruppe_12_backend.rest_api_12.controller;
 import gruppe_12_backend.rest_api_12.model.User;
 import gruppe_12_backend.rest_api_12.service.UserService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Api(tags = "User")
 @ResponseBody
@@ -16,39 +15,40 @@ import java.util.List;
 @RequestMapping(path = "/users")
 public class UserController {
 
-    private final UserService userService;
+    
+    private UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping
-    public ResponseEntity<?> getUser() {
-        return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
+    @ApiOperation(value = "Gets the current user profile", notes = "Gets the current authenticated user profile")
+    @GetMapping("/current/profile")
+    public ResponseEntity<User> getCurrentUser(@RequestAttribute("username") String username) {
+        return new ResponseEntity<User>(userService.getUsers(username), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Get user", notes = "Gets a user")
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable("username") String username) {
+        return new ResponseEntity<User>(userService.getUsers(username), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> registerNewUser(@RequestBody User user) {
-        userService.addNewUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<User>(userService.addNewUser(user) ,HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/delete/{userId}")
-    public ResponseEntity<?> deleteUser(@PathVariable("userId") Long userId) {
-        userService.deleteUser(userId);
-
-        return new ResponseEntity<User>(HttpStatus.OK);
+    @DeleteMapping
+    public ResponseEntity<HttpStatus> deleteUser(@RequestBody User user) {
+        userService.deleteUser(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update/{userId}")
-    public void updateUser(
-            @PathVariable("userId") Long userId,
-            @RequestParam(required = false) String firstName,
-            @RequestParam(required = false) String sureName,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String password,
-            @RequestParam(required = false) String gender) {
-        userService.updateUser(userId, firstName, sureName, email, password, gender);
+    @PutMapping()
+    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
