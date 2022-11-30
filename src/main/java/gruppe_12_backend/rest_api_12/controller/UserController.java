@@ -22,8 +22,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ApiOperation(value = "Gets the current user", notes = "Gets the current authenticated user")
-    @GetMapping("/current")
+    @ApiOperation(value = "Gets the current user profile", notes = "Gets the current authenticated user profile")
+    @GetMapping("/current/profile")
     public ResponseEntity<User> getCurrentUser(@RequestAttribute("username") String username) {
         return new ResponseEntity<User>(userService.getUsers(username), HttpStatus.OK);
     }

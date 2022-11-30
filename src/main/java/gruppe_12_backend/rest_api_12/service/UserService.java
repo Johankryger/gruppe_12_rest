@@ -56,8 +56,8 @@ public class UserService {
 
         User storedUser = userRepository.findUserById(user.getId());
 
-        storedUser.setFirst_name(user.getFirst_name());
-        storedUser.setLast_name(user.getLast_name());
+        storedUser.setFirstName(user.getFirstName());
+        storedUser.setLastName(user.getLastName());
         storedUser.setEmail(user.getEmail());
         storedUser.setGender(user.getGender());
         storedUser.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));

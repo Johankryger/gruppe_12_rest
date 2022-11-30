@@ -13,7 +13,7 @@ public class JwtInterceptorConfig implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (request.getRequestURI().equals("/api/users/current")) {
+        if (request.getRequestURI().equals("/api/users/current/profile")) {
             String token = request.getHeader("Authorization");
             if (token != null) {
                 User user = TokenUtils.validateToken(token);

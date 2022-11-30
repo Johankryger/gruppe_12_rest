@@ -1,16 +1,16 @@
 package gruppe_12_backend.rest_api_12.model;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
 @Entity
-@Table(name = "user_table") //is for hibernate.
-public class User {
+@NoArgsConstructor
+@Table(name = "user_table")
+public @Data class User {
     
     
     @Id
@@ -24,13 +24,13 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -42,16 +42,4 @@ public class User {
     @Column(name = "birthday")
     private Date birthday;
 
-    public User() {
-    }
-
-    public User(String username, String first_name, String last_name, String email, String password, String gender, Date birthday) {
-        this.username = username;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-        this.password = password;
-        this.gender = gender;
-        this.birthday = birthday;
-    }
 }
