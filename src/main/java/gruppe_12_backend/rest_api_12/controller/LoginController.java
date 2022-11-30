@@ -24,7 +24,7 @@ public class LoginController {
     }
 
     @ApiOperation(value = "Authenticate", notes = "Authenticate using login credentials")
-    @PostMapping
+    @PostMapping(consumes = {"application/json"})
     public String sendLoginData(@RequestBody LoginDto data) throws NotAuthorizedException {
 
         if (data != null ) {
