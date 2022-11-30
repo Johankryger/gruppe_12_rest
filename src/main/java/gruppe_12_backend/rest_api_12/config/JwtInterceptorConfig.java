@@ -16,7 +16,7 @@ public class JwtInterceptorConfig implements HandlerInterceptor {
         if (request.getRequestURI().equals("/api/users/current/profile")) {
             String token = request.getHeader("Authorization");
             if (token != null) {
-                User user = TokenUtils.validateToken(token);
+                User user = TokenUtils.validateToken(token.replace("Bearer ", ""));
                 if (user != null) {
                     request.setAttribute("username", user.getUsername());
                     return true;
