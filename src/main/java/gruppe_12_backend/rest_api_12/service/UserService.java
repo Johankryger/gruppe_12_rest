@@ -2,6 +2,7 @@ package gruppe_12_backend.rest_api_12.service;
 
 import gruppe_12_backend.rest_api_12.model.User;
 import gruppe_12_backend.rest_api_12.repository.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Objects;
@@ -34,6 +35,7 @@ public class UserService {
             throw new IllegalStateException("email taken");
         }
         */
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
        return userRepository.save(user);
     }
 
@@ -58,7 +60,7 @@ public class UserService {
         storedUser.setLast_name(user.getLast_name());
         storedUser.setEmail(user.getEmail());
         storedUser.setGender(user.getGender());
-        storedUser.setPassword(user.getPassword());
+        storedUser.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         userRepository.save(storedUser);
 
         /*        

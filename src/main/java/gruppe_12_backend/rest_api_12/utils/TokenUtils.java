@@ -1,4 +1,4 @@
-package gruppe_12_backend.rest_api_12;
+package gruppe_12_backend.rest_api_12.utils;
 
 import java.util.Calendar;
 

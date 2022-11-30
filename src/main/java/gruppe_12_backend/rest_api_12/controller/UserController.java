@@ -22,6 +22,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ApiOperation(value = "Gets the current user", notes = "Gets the current authenticated user")
+    @GetMapping("/current")
+    public ResponseEntity<User> getCurrentUser(@RequestAttribute("username") String username) {
+        return new ResponseEntity<User>(userService.getUsers(username), HttpStatus.OK);
+    }
+
     @ApiOperation(value = "Get user", notes = "Gets a user")
     @GetMapping("/{username}")
     public ResponseEntity<User> getUser(@PathVariable("username") String username) {

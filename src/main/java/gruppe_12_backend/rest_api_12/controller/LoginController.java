@@ -1,12 +1,13 @@
 package gruppe_12_backend.rest_api_12.controller;
 
+import gruppe_12_backend.rest_api_12.model.dto.LoginDto;
 import gruppe_12_backend.rest_api_12.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.annotations.ApiOperation;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
-import gruppe_12_backend.rest_api_12.TokenUtils;
+import gruppe_12_backend.rest_api_12.utils.TokenUtils;
 import gruppe_12_backend.rest_api_12.exceptions.NotAuthorizedException;
-import gruppe_12_backend.rest_api_12.model.LoginData;
 import gruppe_12_backend.rest_api_12.model.User;
 import io.swagger.annotations.Api;
 
@@ -15,14 +16,20 @@ import io.swagger.annotations.Api;
 @RestController
 @RequestMapping(path = "/login")
 public class LoginController {
-    @Autowired
-    UserService userService;
-    @PostMapping
-    public String sendLoginData(@RequestBody LoginData data) throws NotAuthorizedException {
 
-        if(data != null ) {
+    private final UserService userService;
+
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @ApiOperation(value = "Authenticate", notes = "Authenticate using login credentials")
+    @PostMapping
+    public String sendLoginData(@RequestBody LoginDto data) throws NotAuthorizedException {
+
+        if (data != null ) {
             User user = userService.getUsers(data.getUsername());
-            if (user != null && user.getPassword().equals(data.getPassword())) {
+            if (user != null && BCrypt.checkpw(data.getPassword(), user.getPassword())) {
                 return TokenUtils.generateToken(userService.getUsers(data.getUsername()));
             }
         }
