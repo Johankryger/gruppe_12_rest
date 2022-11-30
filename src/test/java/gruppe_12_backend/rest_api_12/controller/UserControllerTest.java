@@ -23,8 +23,8 @@ public class UserControllerTest {
         userController = new UserController(userService);
         User testUser = new User();
         testUser.setUsername("JensErSej");
-        testUser.setFirst_name("Jens");
-        testUser.setLast_name("Larsen");
+        testUser.setFirstName("Jens");
+        testUser.setLastName("Larsen");
         testUser.setGender("Male");
         testUser.setEmail("Jens@test.dk");
         userService.addNewUser(testUser);
@@ -36,8 +36,8 @@ public class UserControllerTest {
         //Assert
         assertEquals(200, responseBody.getStatusCodeValue());
         assertEquals(testUser.getUsername(), responseUser.getUsername());
-        assertEquals(testUser.getFirst_name(), responseUser.getFirst_name());
-        assertEquals(testUser.getLast_name(), responseUser.getLast_name());
+        assertEquals(testUser.getFirstName(), responseUser.getFirstName());
+        assertEquals(testUser.getLastName(), responseUser.getLastName());
         assertEquals(testUser.getGender(), responseUser.getGender());
         assertEquals(testUser.getEmail(), responseUser.getEmail());
 
@@ -51,8 +51,8 @@ public class UserControllerTest {
         userController = new UserController(userService);
         User testUser = new User();
         testUser.setUsername("Alan420");
-        testUser.setFirst_name("Alan");
-        testUser.setLast_name("Jensen");
+        testUser.setFirstName("Alan");
+        testUser.setLastName("Jensen");
         testUser.setGender("Transgender");
         testUser.setEmail("AlanFraBrøndby@test.dk");
 
@@ -63,8 +63,8 @@ public class UserControllerTest {
         //Assert
         assertEquals(201, responseBody.getStatusCodeValue());
         assertEquals(testUser.getUsername(), responseUser.getUsername());
-        assertEquals(testUser.getFirst_name(), responseUser.getFirst_name());
-        assertEquals(testUser.getLast_name(), responseUser.getLast_name());
+        assertEquals(testUser.getFirstName(), responseUser.getFirstName());
+        assertEquals(testUser.getLastName(), responseUser.getLastName());
         assertEquals(testUser.getGender(), responseUser.getGender());
         assertEquals(testUser.getEmail(), responseUser.getEmail());
 
@@ -79,8 +79,8 @@ public class UserControllerTest {
         userController = new UserController(userService);
         User testUser = new User();
         testUser.setUsername("Bente1963");
-        testUser.setFirst_name("Bente");
-        testUser.setLast_name("Hansen");
+        testUser.setFirstName("Bente");
+        testUser.setLastName("Hansen");
         testUser.setGender("Transgender woman");
         testUser.setEmail("Hansen@test.dk");
         testUser.setId(1L);
@@ -104,15 +104,15 @@ public class UserControllerTest {
          userController = new UserController(userService);
          User testUserToBeOpdated = new User();
          testUserToBeOpdated.setUsername("Bente1963");
-         testUserToBeOpdated.setFirst_name("Bente");
-         testUserToBeOpdated.setLast_name("Hansen");
+         testUserToBeOpdated.setFirstName("Bente");
+         testUserToBeOpdated.setLastName("Hansen");
          testUserToBeOpdated.setGender("Transgender woman");
          testUserToBeOpdated.setEmail("Hansen@test.dk");
          testUserToBeOpdated.setId(1L);
          User testUser = new User();
          testUser.setUsername("Bente1963");
-         testUser.setFirst_name("Bent");
-         testUser.setLast_name(" Admin Jansen");
+         testUser.setFirstName("Bent");
+         testUser.setLastName(" Admin Jansen");
          testUser.setGender("Transgender man");
          testUser.setEmail("HansenAdmin@test.dk");
          testUser.setId(1L);
@@ -126,8 +126,8 @@ public class UserControllerTest {
          User updatedUser = userController.getUser(testUser.getUsername()).getBody();
 
          assertEquals(204, response.getStatusCode().value());
-         assertEquals(testUser.getFirst_name(), updatedUser.getFirst_name());
-         assertEquals(testUser.getLast_name(), updatedUser.getLast_name());
+         assertEquals(testUser.getFirstName(), updatedUser.getFirstName());
+         assertEquals(testUser.getLastName(), updatedUser.getLastName());
          assertEquals(testUser.getGender(), updatedUser.getGender());
          assertEquals(testUser.getEmail(), updatedUser.getEmail());
 
