@@ -40,8 +40,8 @@ public class UserService {
     }
 
     public void deleteUser(User user) {
-
-        long userID = user.getId();
+        User existingUser = userRepository.findUserByUsername(user.getUsername());
+        long userID = existingUser.getId();
         boolean exists = userRepository.existsById(userID);
         if (!exists) {
             throw new IllegalStateException("user with id " + userID + " does not exists");
